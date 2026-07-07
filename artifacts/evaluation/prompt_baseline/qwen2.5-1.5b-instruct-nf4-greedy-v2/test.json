@@ -1,0 +1,145 @@
+{
+  "baseline_config_id": "qwen2.5-1.5b-instruct-nf4-greedy-v2",
+  "created_at_utc": "2026-07-07T22:55:44.422412+00:00",
+  "evaluation_type": "prompt_only_baseline",
+  "metrics": {
+    "field_accuracy": {
+      "category": {
+        "accuracy": 0.5,
+        "correct_count": 1,
+        "total_examples": 2
+      },
+      "requires_human_review": {
+        "accuracy": 1.0,
+        "correct_count": 2,
+        "total_examples": 2
+      },
+      "severity": {
+        "accuracy": 0.5,
+        "correct_count": 1,
+        "total_examples": 2
+      }
+    },
+    "latency_seconds": {
+      "max": 2.7984,
+      "mean": 2.2233,
+      "min": 1.6482
+    },
+    "markdown_fence_recovery_used": {
+      "count": 2,
+      "rate": 1.0
+    },
+    "recovered_all_measured_fields_correct": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "recovered_json_schema_valid": {
+      "count": 2,
+      "rate": 1.0
+    },
+    "strict_all_measured_fields_correct": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "strict_json_schema_valid": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "total_examples": 2
+  },
+  "model": {
+    "decoding": {
+      "do_sample": false,
+      "max_new_tokens": 256
+    },
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "4-bit NF4 with double quantization",
+    "requested_revision": "main",
+    "resolved_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "records": [
+    {
+      "expected": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "Remove the vehicle from service, inspect and pressure-test the penetrator assembly, replace compromised seals, and verify enclosure integrity before redeployment.",
+        "requires_human_review": true,
+        "severity": "critical",
+        "subsystem": "forward_cable_penetrator",
+        "suspected_cause": "Possible seal, torque, cable-jacket, or penetrator-interface failure allowing water ingress.",
+        "symptoms": [
+          "water detected inside electronics enclosure",
+          "increased internal humidity",
+          "leak indicator activated"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": false
+      },
+      "id": "ENG-0007",
+      "latency_seconds": 2.7984,
+      "markdown_fence_recovery_used": true,
+      "prediction": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "inspect_and_repair_mechanical_seals_to_prevent_water_entry",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "electronics_enclosure",
+        "suspected_cause": "humidity_rise_and_leak_indicator_change_state",
+        "symptoms": [
+          "small_quantity_of_water_inside_the_electronics_enclosure_near_the_forward_cable_penetrator",
+          "internal_humidity_rise_during_the_dive",
+          "leak_indicator_changed_state"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"category\": \"mechanical_or_environmental\",\n  \"severity\": \"low\",\n  \"subsystem\": \"electronics_enclosure\",\n  \"symptoms\": [\n    \"small_quantity_of_water_inside_the_electronics_enclosure_near_the_forward_cable_penetrator\",\n    \"internal_humidity_rise_during_the_dive\",\n    \"leak_indicator_changed_state\"\n  ],\n  \"suspected_cause\": \"humidity_rise_and_leak_indicator_change_state\",\n  \"recommended_action\": \"inspect_and_repair_mechanical_seals_to_prevent_water_entry\",\n  \"requires_human_review\": true\n}\n```",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "Post-dive inspection found a small quantity of water inside the electronics enclosure near the forward cable penetrator. Internal humidity rose during the dive and the leak indicator changed state, but primary electronics remained operational.",
+      "strict_error": "Expecting value: line 1 column 1 (char 0)",
+      "strict_json_schema_valid": false
+    },
+    {
+      "expected": {
+        "category": "unknown",
+        "recommended_action": "Enable persistent fault-event logging, capture timestamped telemetry during the next transit run, and escalate if the indication recurs.",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "Insufficient evidence to identify the affected subsystem or fault mechanism.",
+        "symptoms": [
+          "intermittent yellow warning indicator",
+          "no stored diagnostic code",
+          "event not reproduced on bench"
+        ]
+      },
+      "field_correctness": {
+        "category": false,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0008",
+      "latency_seconds": 1.6482,
+      "markdown_fence_recovery_used": true,
+      "prediction": {
+        "category": "communications",
+        "recommended_action": "investigate communication link and system logs for potential issues",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "insufficient evidence",
+        "symptoms": [
+          "yellow warning LED flashed twice during a transit run"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"category\": \"communications\",\n  \"severity\": \"low\",\n  \"subsystem\": \"unknown\",\n  \"symptoms\": [\n    \"yellow warning LED flashed twice during a transit run\"\n  ],\n  \"suspected_cause\": \"insufficient evidence\",\n  \"recommended_action\": \"investigate communication link and system logs for potential issues\",\n  \"requires_human_review\": true\n}\n```",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "The operator reported that a yellow warning LED flashed twice during a transit run. No diagnostic code was stored, vehicle performance appeared normal, and the event could not be reproduced during a short bench test.",
+      "strict_error": "Expecting value: line 1 column 1 (char 0)",
+      "strict_json_schema_valid": false
+    }
+  ],
+  "split": "test"
+}
