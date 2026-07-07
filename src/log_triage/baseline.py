@@ -174,13 +174,13 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
             "accuracy": rate(correct_count),
         }
 
-    strict_end_to_end_count = sum(
+    strict_all_measured_fields_count = sum(
         record["strict_json_schema_valid"] is True
         and all(record["field_correctness"].values())
         for record in records
     )
 
-    recovered_end_to_end_count = sum(
+    recovered_all_measured_fields_count = sum(
         record["recovered_json_schema_valid"] is True
         and all(record["field_correctness"].values())
         for record in records
@@ -203,13 +203,13 @@ def summarize_records(records: list[dict[str, Any]]) -> dict[str, Any]:
             "rate": rate(recovery_used_count),
         },
         "field_accuracy": field_accuracy,
-        "strict_end_to_end_classification_correct": {
-            "count": strict_end_to_end_count,
-            "rate": rate(strict_end_to_end_count),
+        "strict_all_measured_fields_correct": {
+            "count": strict_all_measured_fields_count,
+            "rate": rate(strict_all_measured_fields_count),
         },
-        "recovered_end_to_end_classification_correct": {
-            "count": recovered_end_to_end_count,
-            "rate": rate(recovered_end_to_end_count),
+        "recovered_all_measured_fields_correct": {
+            "count": recovered_all_measured_fields_count,
+            "rate": rate(recovered_all_measured_fields_count),
         },
         "latency_seconds": {
             "min": round(min(latency_values), 4),
@@ -304,6 +304,7 @@ def main() -> None:
         / "artifacts"
         / "evaluation"
         / "prompt_baseline"
+        / BASELINE_CONFIG_ID
         / f"{args.split}.json"
     )
 

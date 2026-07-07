@@ -36,4 +36,6 @@ def test_summary_distinguishes_strict_and_recovered_validity() -> None:
     assert summary["field_accuracy"]["category"]["accuracy"] == 0.5
     assert summary["field_accuracy"]["severity"]["accuracy"] == 1.0
     assert summary["field_accuracy"]["requires_human_review"]["accuracy"] == 0.5
+    assert summary["strict_all_measured_fields_correct"]["rate"] == 0.0
+    assert summary["recovered_all_measured_fields_correct"]["rate"] == 0.0
     assert summary["latency_seconds"]["mean"] == 2.0

@@ -73,7 +73,7 @@ def load_qwen_for_inference(
         model_id,
         revision=revision,
         quantization_config=build_4bit_quantization_config(),
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
         low_cpu_mem_usage=True,
     )
