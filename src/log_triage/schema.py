@@ -1,8 +1,9 @@
 """Typed structured-output contract for engineering log triage."""
 
 from enum import StrEnum
+from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class IncidentCategory(StrEnum):
@@ -25,6 +26,8 @@ class Severity(StrEnum):
 
 class TriageResult(BaseModel):
     """Normalized engineering-triage result produced by a model or reviewer."""
+
+    model_config = ConfigDict(extra="forbid")
 
     category: IncidentCategory
     severity: Severity
@@ -49,3 +52,21 @@ class TriageResult(BaseModel):
         description="Concrete next diagnostic or mitigation action.",
     )
     requires_human_review: bool
+
+
+class EngineeringLogExample(BaseModel):
+    """One curated training or evaluation example."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(
+        pattern=r"^ENG-\d{4}$",
+        description="Stable dataset record identifier.",
+    )
+    source_type: Literal["synthetic_sanitized"]
+    report_text: str = Field(
+        min_length=20,
+        max_length=4000,
+        description="Unstructured engineering or fault-report text.",
+    )
+    target: TriageResult
