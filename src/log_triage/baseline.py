@@ -23,7 +23,7 @@ from log_triage.schema import EngineeringLogExample, TriageResult
 from log_triage.splits import load_split_manifest, partition_examples
 
 
-BASELINE_CONFIG_ID = "qwen2.5-1.5b-instruct-nf4-greedy-v1"
+BASELINE_CONFIG_ID = "qwen2.5-1.5b-instruct-nf4-greedy-v2"
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATASET_PATH = PROJECT_ROOT / "data" / "raw" / "seed_examples.jsonl"
