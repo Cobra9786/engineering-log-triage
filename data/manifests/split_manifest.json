@@ -1,0 +1,21 @@
+{
+  "dataset_version": "0.1.0",
+  "splits": {
+    "train": [
+      "ENG-0001",
+      "ENG-0002",
+      "ENG-0003",
+      "ENG-0004",
+      "ENG-0005",
+      "ENG-0006"
+    ],
+    "validation": [
+      "ENG-0009",
+      "ENG-0010"
+    ],
+    "test": [
+      "ENG-0007",
+      "ENG-0008"
+    ]
+  }
+}
