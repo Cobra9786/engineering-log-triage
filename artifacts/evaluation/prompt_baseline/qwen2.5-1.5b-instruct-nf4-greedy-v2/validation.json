@@ -1,0 +1,145 @@
+{
+  "baseline_config_id": "qwen2.5-1.5b-instruct-nf4-greedy-v2",
+  "created_at_utc": "2026-07-07T22:48:49.373359+00:00",
+  "evaluation_type": "prompt_only_baseline",
+  "metrics": {
+    "field_accuracy": {
+      "category": {
+        "accuracy": 0.5,
+        "correct_count": 1,
+        "total_examples": 2
+      },
+      "requires_human_review": {
+        "accuracy": 1.0,
+        "correct_count": 2,
+        "total_examples": 2
+      },
+      "severity": {
+        "accuracy": 0.5,
+        "correct_count": 1,
+        "total_examples": 2
+      }
+    },
+    "latency_seconds": {
+      "max": 1.9415,
+      "mean": 1.8877,
+      "min": 1.8339
+    },
+    "markdown_fence_recovery_used": {
+      "count": 2,
+      "rate": 1.0
+    },
+    "recovered_all_measured_fields_correct": {
+      "count": 1,
+      "rate": 0.5
+    },
+    "recovered_json_schema_valid": {
+      "count": 2,
+      "rate": 1.0
+    },
+    "strict_all_measured_fields_correct": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "strict_json_schema_valid": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "total_examples": 2
+  },
+  "model": {
+    "decoding": {
+      "do_sample": false,
+      "max_new_tokens": 256
+    },
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "4-bit NF4 with double quantization",
+    "requested_revision": "main",
+    "resolved_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "records": [
+    {
+      "expected": {
+        "category": "sensor_or_signal_path",
+        "recommended_action": "Inspect and strain-relieve the imaging cable, reseat connectors, check grounding continuity, and repeat capture while monitoring link errors.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "imaging_data_link",
+        "suspected_cause": "Probable intermittent cable, connector, grounding, or high-speed data-link integrity issue.",
+        "symptoms": [
+          "horizontal image artifacts",
+          "artifacts increase with cable movement",
+          "stream remains available"
+        ]
+      },
+      "field_correctness": {
+        "category": false,
+        "requires_human_review": true,
+        "severity": false
+      },
+      "id": "ENG-0009",
+      "latency_seconds": 1.9415,
+      "markdown_fence_recovery_used": true,
+      "prediction": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "verify and re-calibrate the camera's exposure settings",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "camera",
+        "suspected_cause": "improper calibration or configuration settings",
+        "symptoms": [
+          "repeated horizontal artifacts",
+          "artifact frequency increased with cable movement"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"category\": \"calibration_or_configuration\",\n  \"severity\": \"high\",\n  \"subsystem\": \"camera\",\n  \"symptoms\": [\n    \"repeated horizontal artifacts\",\n    \"artifact frequency increased with cable movement\"\n  ],\n  \"suspected_cause\": \"improper calibration or configuration settings\",\n  \"recommended_action\": \"verify and re-calibrate the camera's exposure settings\",\n  \"requires_human_review\": true\n}\n```",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "The low-light camera stream developed repeated horizontal artifacts after the vehicle switched from standby to active capture mode. Frames remained available, but artifact frequency increased with cable movement near the imaging module.",
+      "strict_error": "Expecting value: line 1 column 1 (char 0)",
+      "strict_json_schema_valid": false
+    },
+    {
+      "expected": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "Block further collection with the affected profile, restore the approved calibration configuration, and add configuration identity checks to deployment validation.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "acquisition_profile_configuration",
+        "suspected_cause": "Incorrect gain or calibration configuration was deployed to the acquisition system.",
+        "symptoms": [
+          "measurements lower than validated baseline",
+          "hardware self-tests passed",
+          "configured gain differs from approved calibration"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0010",
+      "latency_seconds": 1.8339,
+      "markdown_fence_recovery_used": true,
+      "prediction": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "revalidate the loaded configuration against the approved calibration sheet",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "unknown",
+        "suspected_cause": "gain value mismatch",
+        "symptoms": [
+          "measurements approximately 18 percent lower than the prior validated run",
+          "loaded configuration shows a gain value different from the approved calibration sheet"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"category\": \"calibration_or_configuration\",\n  \"severity\": \"high\",\n  \"subsystem\": \"unknown\",\n  \"symptoms\": [\n    \"measurements approximately 18 percent lower than the prior validated run\",\n    \"loaded configuration shows a gain value different from the approved calibration sheet\"\n  ],\n  \"suspected_cause\": \"gain value mismatch\",\n  \"recommended_action\": \"revalidate the loaded configuration against the approved calibration sheet\",\n  \"requires_human_review\": true\n}\n```",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "A new acquisition-profile deployment produced measurements approximately 18 percent lower than the prior validated run. Hardware self-tests passed, but the loaded configuration showed a gain value different from the approved calibration sheet.",
+      "strict_error": "Expecting value: line 1 column 1 (char 0)",
+      "strict_json_schema_valid": false
+    }
+  ],
+  "split": "validation"
+}
