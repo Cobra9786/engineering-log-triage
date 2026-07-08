@@ -1,0 +1,13 @@
+{
+  "dataset_version": "0.2.0",
+  "format": "chat_messages_jsonl",
+  "source_dataset": "data/raw/seed_examples.jsonl",
+  "source_manifest": "data/manifests/split_manifest.json",
+  "split_policy": "lora_v1",
+  "splits": {
+    "test": 3,
+    "train": 36,
+    "validation": 7
+  },
+  "total_records": 46
+}
