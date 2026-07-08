@@ -1,0 +1,360 @@
+{
+  "adapter": {
+    "path": "artifacts/training/qwen_lora_r8_train48_steps72_v1/adapter"
+  },
+  "base_model": {
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "loaded_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "4-bit NF4 with double quantization",
+    "requested_revision": "main",
+    "resolved_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "created_at_utc": "2026-07-08T18:28:55.795213+00:00",
+  "evaluation_type": "lora_adapter",
+  "metrics": {
+    "field_accuracy": {
+      "category": {
+        "accuracy": 1.0,
+        "correct_count": 7,
+        "total_examples": 7
+      },
+      "requires_human_review": {
+        "accuracy": 1.0,
+        "correct_count": 7,
+        "total_examples": 7
+      },
+      "severity": {
+        "accuracy": 0.7143,
+        "correct_count": 5,
+        "total_examples": 7
+      }
+    },
+    "latency_seconds": {
+      "max": 3.5825,
+      "mean": 3.1859,
+      "min": 2.8447
+    },
+    "markdown_fence_recovery_used": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "recovered_all_measured_fields_correct": {
+      "count": 5,
+      "rate": 0.7143
+    },
+    "recovered_json_schema_valid": {
+      "count": 7,
+      "rate": 1.0
+    },
+    "strict_all_measured_fields_correct": {
+      "count": 5,
+      "rate": 0.7143
+    },
+    "strict_json_schema_valid": {
+      "count": 7,
+      "rate": 1.0
+    },
+    "total_examples": 7
+  },
+  "records": [
+    {
+      "expected": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "Remove the vehicle from service, inspect and pressure-test the penetrator assembly, replace compromised seals, and verify enclosure integrity before redeployment.",
+        "requires_human_review": true,
+        "severity": "critical",
+        "subsystem": "forward_cable_penetrator",
+        "suspected_cause": "Possible seal, torque, cable-jacket, or penetrator-interface failure allowing water ingress.",
+        "symptoms": [
+          "water detected inside electronics enclosure",
+          "increased internal humidity",
+          "leak indicator activated"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": false
+      },
+      "id": "ENG-0007",
+      "latency_seconds": 3.5825,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "Inspect the penetrator assembly, replace any compromised seals, and verify enclosure integrity after each diving operation.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "enclosure_sealing_forward_penetration",
+        "suspected_cause": "Mechanical seal failure at the forward cable penetrator, ingress path through the enclosure, or environmental pressure differential.",
+        "symptoms": [
+          "water detected inside enclosure near penetration point",
+          "humidity rise during dive",
+          "leak indicator changes state"
+        ]
+      },
+      "raw_response": "{\"category\":\"mechanical_or_environmental\",\"severity\":\"medium\",\"subsystem\":\"enclosure_sealing_forward_penetration\",\"symptoms\":[\"water detected inside enclosure near penetration point\",\"humidity rise during dive\",\"leak indicator changes state\"],\"suspected_cause\":\"Mechanical seal failure at the forward cable penetrator, ingress path through the enclosure, or environmental pressure differential.\",\"recommended_action\":\"Inspect the penetrator assembly, replace any compromised seals, and verify enclosure integrity after each diving operation.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "Post-dive inspection found a small quantity of water inside the electronics enclosure near the forward cable penetrator. Internal humidity rose during the dive and the leak indicator changed state, but primary electronics remained operational.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "unknown",
+        "recommended_action": "Enable persistent fault-event logging, capture timestamped telemetry during the next transit run, and escalate if the indication recurs.",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "Insufficient evidence to identify the affected subsystem or fault mechanism.",
+        "symptoms": [
+          "intermittent yellow warning indicator",
+          "no stored diagnostic code",
+          "event not reproduced on bench"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0008",
+      "latency_seconds": 2.8893,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "unknown",
+        "recommended_action": "Monitor the yellow LED during future runs, record all events, and escalate if the symptom recurs or is exacerbated.",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "Insufficient evidence to identify a specific subsystem or fault.",
+        "symptoms": [
+          "yellow warning LED flashes during transit run",
+          "no diagnostic code stored",
+          "vehicle performance appears normal",
+          "event cannot be reproduced on bench test"
+        ]
+      },
+      "raw_response": "{\"category\":\"unknown\",\"severity\":\"low\",\"subsystem\":\"unknown\",\"symptoms\":[\"yellow warning LED flashes during transit run\",\"no diagnostic code stored\",\"vehicle performance appears normal\",\"event cannot be reproduced on bench test\"],\"suspected_cause\":\"Insufficient evidence to identify a specific subsystem or fault.\",\"recommended_action\":\"Monitor the yellow LED during future runs, record all events, and escalate if the symptom recurs or is exacerbated.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "The operator reported that a yellow warning LED flashed twice during a transit run. No diagnostic code was stored, vehicle performance appeared normal, and the event could not be reproduced during a short bench test.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "sensor_or_signal_path",
+        "recommended_action": "Inspect and strain-relieve the imaging cable, reseat connectors, check grounding continuity, and repeat capture while monitoring link errors.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "imaging_data_link",
+        "suspected_cause": "Probable intermittent cable, connector, grounding, or high-speed data-link integrity issue.",
+        "symptoms": [
+          "horizontal image artifacts",
+          "artifacts increase with cable movement",
+          "stream remains available"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0009",
+      "latency_seconds": 2.9879,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "sensor_or_signal_path",
+        "recommended_action": "Inspect cable routing, connector contact quality, and imaging-module shielding; add impedance-matching components if necessary.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "camera_sensor_signal_path",
+        "suspected_cause": "Signal coupling or attenuation fault between the imaging module and acquisition electronics.",
+        "symptoms": [
+          "repeated horizontal artifacts on low-light frames",
+          "frames remain available despite artifacts",
+          "artifact frequency increases during cable movement"
+        ]
+      },
+      "raw_response": "{\"category\":\"sensor_or_signal_path\",\"severity\":\"medium\",\"subsystem\":\"camera_sensor_signal_path\",\"symptoms\":[\"repeated horizontal artifacts on low-light frames\",\"frames remain available despite artifacts\",\"artifact frequency increases during cable movement\"],\"suspected_cause\":\"Signal coupling or attenuation fault between the imaging module and acquisition electronics.\",\"recommended_action\":\"Inspect cable routing, connector contact quality, and imaging-module shielding; add impedance-matching components if necessary.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "The low-light camera stream developed repeated horizontal artifacts after the vehicle switched from standby to active capture mode. Frames remained available, but artifact frequency increased with cable movement near the imaging module.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "Block further collection with the affected profile, restore the approved calibration configuration, and add configuration identity checks to deployment validation.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "acquisition_profile_configuration",
+        "suspected_cause": "Incorrect gain or calibration configuration was deployed to the acquisition system.",
+        "symptoms": [
+          "measurements lower than validated baseline",
+          "hardware self-tests passed",
+          "configured gain differs from approved calibration"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0010",
+      "latency_seconds": 2.8447,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "Verify approved configuration, repeat profiling with the initial deployment, inspect profile compatibility, and add automated validation before release.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "acquisition_profile_configuration",
+        "suspected_cause": "Configuration drift, approval oversight, or incompatible profile parameters.",
+        "symptoms": [
+          "new acquisition profile produces degraded measurements",
+          "gain differs from approved calibration sheet",
+          "self-test passes"
+        ]
+      },
+      "raw_response": "{\"category\":\"calibration_or_configuration\",\"severity\":\"high\",\"subsystem\":\"acquisition_profile_configuration\",\"symptoms\":[\"new acquisition profile produces degraded measurements\",\"gain differs from approved calibration sheet\",\"self-test passes\"],\"suspected_cause\":\"Configuration drift, approval oversight, or incompatible profile parameters.\",\"recommended_action\":\"Verify approved configuration, repeat profiling with the initial deployment, inspect profile compatibility, and add automated validation before release.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "A new acquisition-profile deployment produced measurements approximately 18 percent lower than the prior validated run. Hardware self-tests passed, but the loaded configuration showed a gain value different from the approved calibration sheet.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "sensor_or_signal_path",
+        "recommended_action": "Inspect cable routing and strain relief, verify connector retention and shielding continuity, isolate the bundle from the frame, and repeat vibration testing with video-error monitoring.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "forward_camera_data_link",
+        "suspected_cause": "Mechanical stress, grounding, shielding, or connector integrity issue in the camera data-link path.",
+        "symptoms": [
+          "intermittent colored image streaks",
+          "artifacts occur when cable bundle contacts frame",
+          "stream remains connected",
+          "artifacts disappear after cable repositioning"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": false
+      },
+      "id": "ENG-0041",
+      "latency_seconds": 3.0821,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "sensor_or_signal_path",
+        "recommended_action": "Inspect the cable bundle, connector interface, and shield integrity; replace the harness if damaged or degraded.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "forward_camera_sensor_link",
+        "suspected_cause": "Intermittent connector, harness, or shielding failure within the camera link path.",
+        "symptoms": [
+          "colored streaks appear during cable pressure tests",
+          "video stream remains connected",
+          "artifacts disappear with bundle separation"
+        ]
+      },
+      "raw_response": "{\"category\":\"sensor_or_signal_path\",\"severity\":\"medium\",\"subsystem\":\"forward_camera_sensor_link\",\"symptoms\":[\"colored streaks appear during cable pressure tests\",\"video stream remains connected\",\"artifacts disappear with bundle separation\"],\"suspected_cause\":\"Intermittent connector, harness, or shielding failure within the camera link path.\",\"recommended_action\":\"Inspect the cable bundle, connector interface, and shield integrity; replace the harness if damaged or degraded.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "A forward-looking camera developed intermittent colored streaks whenever its cable bundle was pressed against the vehicle frame. The video stream stayed connected, and the artifacts disappeared when the bundle was repositioned away from the frame.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "Block use of the affected navigation package, deploy the approved conversion table, and add configuration-version verification to the release process.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "depth_to_altitude_conversion_configuration",
+        "suspected_cause": "An outdated conversion-table configuration was packaged or selected during deployment.",
+        "symptoms": [
+          "altitude estimates consistently low",
+          "pressure sensor self-test passes",
+          "older conversion-table version deployed"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0042",
+      "latency_seconds": 3.4408,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "calibration_or_configuration",
+        "recommended_action": "Replace the deployment package with the latest version, verify the conversion table against release records, and add a test suite for depth-to-altitude conversions before production release.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "depth_conversion_table",
+        "suspected_cause": "Deployment packaging references an outdated depth-to-altitude conversion table.",
+        "symptoms": [
+          "consistent low altitude estimates after software update",
+          "self-test passes on pressure sensor",
+          "older depth-to-altitude conversion table is used"
+        ]
+      },
+      "raw_response": "{\"category\":\"calibration_or_configuration\",\"severity\":\"high\",\"subsystem\":\"depth_conversion_table\",\"symptoms\":[\"consistent low altitude estimates after software update\",\"self-test passes on pressure sensor\",\"older depth-to-altitude conversion table is used\"],\"suspected_cause\":\"Deployment packaging references an outdated depth-to-altitude conversion table.\",\"recommended_action\":\"Replace the deployment package with the latest version, verify the conversion table against release records, and add a test suite for depth-to-altitude conversions before production release.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "After loading a new navigation software build, altitude estimates were consistently 6 percent low while the pressure sensor self-test passed. Release records showed that the deployed package referenced an older depth-to-altitude conversion table.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "Remove the vehicle from service, isolate battery power, inspect and pressure-test the battery compartment and penetrators, replace compromised seals, and verify insulation resistance before reuse.",
+        "requires_human_review": true,
+        "severity": "critical",
+        "subsystem": "battery_compartment_sealing_interface",
+        "suspected_cause": "A battery-compartment seal, penetrator, or internal interface may be allowing water ingress despite an intact outer housing.",
+        "symptoms": [
+          "moisture detected inside battery compartment",
+          "reduced insulation resistance on battery leads",
+          "water present beneath battery tray",
+          "no visible outer-housing damage"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0043",
+      "latency_seconds": 3.4742,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "mechanical_or_environmental",
+        "recommended_action": "Inspect the battery compartment seal, replace any compromised components, and repeat the inspection after drying the enclosure.",
+        "requires_human_review": true,
+        "severity": "critical",
+        "subsystem": "battery_compartment_sealing_and_insulation",
+        "suspected_cause": "Mechanical seal failure, insulation degradation, or ingress through the battery enclosure.",
+        "symptoms": [
+          "leak detector reports moisture inside battery compartment",
+          "insulation resistance falls below pre-dive value",
+          "water is present beneath battery tray"
+        ]
+      },
+      "raw_response": "{\"category\":\"mechanical_or_environmental\",\"severity\":\"critical\",\"subsystem\":\"battery_compartment_sealing_and_insulation\",\"symptoms\":[\"leak detector reports moisture inside battery compartment\",\"insulation resistance falls below pre-dive value\",\"water is present beneath battery tray\"],\"suspected_cause\":\"Mechanical seal failure, insulation degradation, or ingress through the battery enclosure.\",\"recommended_action\":\"Inspect the battery compartment seal, replace any compromised components, and repeat the inspection after drying the enclosure.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "Following a dive, the leak detector reported moisture inside the battery compartment and insulation resistance on the main battery leads was below the pre-dive measurement. The outer housing showed no visible damage, but water was present beneath the battery tray.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    }
+  ],
+  "run_id": "qwen-lora-r8-train48-steps72-v1",
+  "split": "validation"
+}

@@ -1,0 +1,191 @@
+{
+  "adapter": {
+    "path": "artifacts/training/qwen_lora_r8_train48_steps72_v1/adapter"
+  },
+  "base_model": {
+    "id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "loaded_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "4-bit NF4 with double quantization",
+    "requested_revision": "main",
+    "resolved_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "created_at_utc": "2026-07-08T18:36:03.765250+00:00",
+  "evaluation_type": "lora_adapter",
+  "metrics": {
+    "field_accuracy": {
+      "category": {
+        "accuracy": 0.6667,
+        "correct_count": 2,
+        "total_examples": 3
+      },
+      "requires_human_review": {
+        "accuracy": 0.6667,
+        "correct_count": 2,
+        "total_examples": 3
+      },
+      "severity": {
+        "accuracy": 0.3333,
+        "correct_count": 1,
+        "total_examples": 3
+      }
+    },
+    "latency_seconds": {
+      "max": 3.3391,
+      "mean": 3.0377,
+      "min": 2.5449
+    },
+    "markdown_fence_recovery_used": {
+      "count": 0,
+      "rate": 0.0
+    },
+    "recovered_all_measured_fields_correct": {
+      "count": 1,
+      "rate": 0.3333
+    },
+    "recovered_json_schema_valid": {
+      "count": 3,
+      "rate": 1.0
+    },
+    "strict_all_measured_fields_correct": {
+      "count": 1,
+      "rate": 0.3333
+    },
+    "strict_json_schema_valid": {
+      "count": 3,
+      "rate": 1.0
+    },
+    "total_examples": 3
+  },
+  "records": [
+    {
+      "expected": {
+        "category": "communications",
+        "recommended_action": "Inspect antenna orientation and installation, correlate heading with RSSI and delivery rate, repeat the survey with controlled headings, and improve link margin before operational use.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "rf_command_and_telemetry_link",
+        "suspected_cause": "Orientation-dependent RF link-margin loss is interrupting command and telemetry traffic while onboard systems remain operational.",
+        "symptoms": [
+          "no new mission updates received",
+          "internal recording continues",
+          "RSSI falls below normal threshold",
+          "command acknowledgements resume after heading change"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": false
+      },
+      "id": "ENG-0044",
+      "latency_seconds": 3.2291,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "communications",
+        "recommended_action": "Monitor RSSI, command-delivery latency, and receive-acknowledgement reliability; inspect antenna, cable, connector, or power-supply integrity; repeat the survey with improved link monitoring.",
+        "requires_human_review": true,
+        "severity": "medium",
+        "subsystem": "command_link",
+        "suspected_cause": "Command-link communication link failure or transient interference.",
+        "symptoms": [
+          "no new mission updates",
+          "RSSI falls below threshold",
+          "command acknowledgements resume"
+        ]
+      },
+      "raw_response": "{\"category\":\"communications\",\"severity\":\"medium\",\"subsystem\":\"command_link\",\"symptoms\":[\"no new mission updates\",\"RSSI falls below threshold\",\"command acknowledgements resume\"],\"suspected_cause\":\"Command-link communication link failure or transient interference.\",\"recommended_action\":\"Monitor RSSI, command-delivery latency, and receive-acknowledgement reliability; inspect antenna, cable, connector, or power-supply integrity; repeat the survey with improved link monitoring.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "During a coastal survey, the vehicle continued recording internally but received no new mission updates for six minutes. RSSI at the support station fell below the normal threshold during that interval, and command acknowledgements resumed after the vehicle changed heading.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "unknown",
+        "recommended_action": "Enable persistent display and power-event logging, inspect connectors during routine maintenance, and escalate if the event recurs or correlates with another anomaly.",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "Insufficient evidence to determine whether the event was a display transient, power disturbance, or an emerging subsystem fault.",
+        "symptoms": [
+          "brief status-display flicker",
+          "no diagnostic code recorded",
+          "measurements remain normal",
+          "later power cycles normal"
+        ]
+      },
+      "field_correctness": {
+        "category": true,
+        "requires_human_review": true,
+        "severity": true
+      },
+      "id": "ENG-0045",
+      "latency_seconds": 2.5449,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "unknown",
+        "recommended_action": "Monitor the display during future pre-launch checks, correlate with other system events, and escalate if the issue recurs.",
+        "requires_human_review": true,
+        "severity": "low",
+        "subsystem": "unknown",
+        "suspected_cause": "Insufficient evidence to identify a specific subsystem or fault.",
+        "symptoms": [
+          "brief status-display flicker",
+          "no associated code record",
+          "normal measurements after power cycle"
+        ]
+      },
+      "raw_response": "{\"category\":\"unknown\",\"severity\":\"low\",\"subsystem\":\"unknown\",\"symptoms\":[\"brief status-display flicker\",\"no associated code record\",\"normal measurements after power cycle\"],\"suspected_cause\":\"Insufficient evidence to identify a specific subsystem or fault.\",\"recommended_action\":\"Monitor the display during future pre-launch checks, correlate with other system events, and escalate if the issue recurs.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "A technician observed one brief flicker of the status display during pre-launch checkout. No code was recorded, all measurements remained normal, and the display behaved normally during three later power cycles.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    },
+    {
+      "expected": {
+        "category": "data_pipeline_or_api",
+        "recommended_action": "Define and implement source-aware ordering, retain receipt and source timestamps, add delayed-delivery integration tests, and expose ordering provenance in the dashboard.",
+        "requires_human_review": false,
+        "severity": "medium",
+        "subsystem": "incident_ingestion_ordering",
+        "suspected_cause": "The ingestion or presentation layer is ordering delayed events by receipt time instead of source sequence or source-event time.",
+        "symptoms": [
+          "older device faults appear after newer faults",
+          "device sequence numbers remain intact",
+          "records displayed in server-arrival order",
+          "issue follows temporary network outage"
+        ]
+      },
+      "field_correctness": {
+        "category": false,
+        "requires_human_review": false,
+        "severity": false
+      },
+      "id": "ENG-0046",
+      "latency_seconds": 3.3391,
+      "markdown_fence_recovery_used": false,
+      "prediction": {
+        "category": "communications",
+        "recommended_action": "Inspect the ingestion service ordering logic, verify that the queue is ordered by source event time, and add a retention-order check to the ingestion pipeline.",
+        "requires_human_review": true,
+        "severity": "high",
+        "subsystem": "device_sequence_ordering",
+        "suspected_cause": "Ordering errors in the ingestion pipeline may have caused the fault events to be mixed with the new events.",
+        "symptoms": [
+          "older fault events appear before newer ones on the ingestion service dashboard",
+          "device sequence numbers remain consistent across the event stream"
+        ]
+      },
+      "raw_response": "{\"category\":\"communications\",\"severity\":\"high\",\"subsystem\":\"device_sequence_ordering\",\"symptoms\":[\"older fault events appear before newer ones on the ingestion service dashboard\",\"device sequence numbers remain consistent across the event stream\"],\"suspected_cause\":\"Ordering errors in the ingestion pipeline may have caused the fault events to be mixed with the new events.\",\"recommended_action\":\"Inspect the ingestion service ordering logic, verify that the queue is ordered by source event time, and add a retention-order check to the ingestion pipeline.\",\"requires_human_review\":true}",
+      "recovered_error": null,
+      "recovered_json_schema_valid": true,
+      "report_text": "After a temporary network outage, the incident dashboard showed several older device faults after newer faults from the same device. Device sequence numbers were intact, but the ingestion service displayed records in server-arrival order rather than source-event order.",
+      "strict_error": null,
+      "strict_json_schema_valid": true
+    }
+  ],
+  "run_id": "qwen-lora-r8-train48-steps72-v1",
+  "split": "test"
+}
