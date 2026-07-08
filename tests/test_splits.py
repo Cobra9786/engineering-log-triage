@@ -25,7 +25,7 @@ def test_active_manifest_partitions_every_dataset_example_once() -> None:
     }
 
     assert assigned_ids == {example.id for example in examples}
-    assert len(partitions["train"]) == 36
+    assert len(partitions["train"]) == 48
     assert len(partitions["validation"]) == 7
     assert len(partitions["test"]) == 3
 

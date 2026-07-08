@@ -9,11 +9,11 @@ def test_export_supervised_dataset_writes_expected_splits(tmp_path) -> None:
 
     assert manifest["split_policy"] == "lora_v1"
     assert manifest["splits"] == {
-        "train": 36,
+        "train": 48,
         "validation": 7,
         "test": 3,
     }
-    assert manifest["total_records"] == 46
+    assert manifest["total_records"] == 58
 
     for split_name, expected_count in manifest["splits"].items():
         path = tmp_path / f"{split_name}.jsonl"
