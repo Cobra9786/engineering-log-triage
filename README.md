@@ -29,3 +29,18 @@ Every prediction must produce:
 ## Current status
 
 Phase 1: typed output contract and test foundation.
+
+cat >> README.md <<'EOF'
+
+## Demo: LoRA-Adapted Engineering Log Triage API
+
+This project adapts `Qwen/Qwen2.5-1.5B-Instruct` with a PEFT/LoRA adapter for structured engineering-log triage.
+
+The API accepts an unstructured engineering or sensor fault report and returns a validated JSON response matching the project `TriageResult` schema.
+
+### Current local adapter
+
+Selected local adapter run:
+
+```text
+artifacts/training/qwen_lora_r8_train48_steps72_v1/adapter
