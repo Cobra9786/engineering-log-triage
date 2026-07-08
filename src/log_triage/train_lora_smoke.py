@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import gc
 import json
+import shutil
 import time
 from pathlib import Path
 from typing import Any
@@ -130,16 +131,41 @@ def build_sft_config(output_dir: Path, max_steps: int) -> SFTConfig:
     )
 
 
+
+def prepare_output_dir(output_dir: Path, overwrite_output_dir: bool) -> Path:
+    """Create a training output directory without accidental overwrite."""
+
+    resolved_output_dir = output_dir.resolve()
+
+    if resolved_output_dir.exists() and not resolved_output_dir.is_dir():
+        raise NotADirectoryError(
+            f"Training output path exists but is not a directory: {resolved_output_dir}",
+        )
+
+    if resolved_output_dir.exists() and any(resolved_output_dir.iterdir()):
+        if not overwrite_output_dir:
+            raise FileExistsError(
+                "Training output directory already exists and is not empty: "
+                f"{resolved_output_dir}. Use --overwrite-output-dir only when you "
+                "intentionally want to delete and replace this run.",
+            )
+
+        shutil.rmtree(resolved_output_dir)
+
+    resolved_output_dir.mkdir(parents=True, exist_ok=True)
+    return resolved_output_dir
+
+
 def train_smoke_adapter(
     dataset_dir: Path,
     output_dir: Path,
     max_steps: int,
+    overwrite_output_dir: bool = False,
 ) -> Path:
     """Run a tiny QLoRA SFT smoke training loop and save the adapter."""
 
     dataset_dir = dataset_dir.resolve()
-    output_dir = output_dir.resolve()
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = prepare_output_dir(output_dir, overwrite_output_dir)
 
     dataset = load_supervised_splits(dataset_dir)
     tokenizer, model = load_trainable_qwen()
@@ -282,6 +308,11 @@ def parse_args() -> argparse.Namespace:
         help="Tiny number of training steps for smoke validation.",
     )
     parser.add_argument(
+        "--overwrite-output-dir",
+        action="store_true",
+        help="Delete and replace an existing non-empty output directory.",
+    )
+    parser.add_argument(
         "--skip-reload-check",
         action="store_true",
         help="Skip adapter reload and generation check after training.",
@@ -298,6 +329,7 @@ def main() -> None:
         dataset_dir=args.dataset_dir,
         output_dir=args.output_dir,
         max_steps=args.max_steps,
+        overwrite_output_dir=args.overwrite_output_dir,
     )
 
     if not args.skip_reload_check:
