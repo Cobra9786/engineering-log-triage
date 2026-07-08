@@ -24,3 +24,6 @@ dist/
 
 # Local training outputs and adapter checkpoints
 artifacts/training/
+
+# Personal local notes
+NOTES.md
