@@ -15,7 +15,7 @@ cuda-pathfinder==1.2.2
 cuda-toolkit==12.6.3
 datasets==4.8.5
 dill==0.4.1
--e git+ssh://git@github.com/Cobra9786/engineering-log-triage.git@b9a0e27748591f3990d0581ec96a4dc55ddd730d#egg=engineering_log_triage
+-e git+ssh://git@github.com/Cobra9786/engineering-log-triage.git@2584cacd0e469082bdb6764c46ff22fd4314e81a#egg=engineering_log_triage
 filelock==3.29.0
 frozenlist==1.8.0
 fsspec==2026.2.0
@@ -79,6 +79,7 @@ torchvision==0.27.1+cu126
 tqdm==4.68.4
 transformers==5.13.0
 triton==3.7.1
+trl==0.29.1
 typer==0.26.8
 typing_extensions==4.16.0
 typing-inspection==0.4.2
