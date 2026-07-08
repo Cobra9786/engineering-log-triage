@@ -21,3 +21,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Local training outputs and adapter checkpoints
+artifacts/training/
