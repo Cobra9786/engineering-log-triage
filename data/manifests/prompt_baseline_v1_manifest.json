@@ -1,6 +1,5 @@
 {
-  "dataset_version": "0.2.0",
-  "split_policy": "lora_v1",
+  "dataset_version": "0.1.0",
   "splits": {
     "train": [
       "ENG-0001",
@@ -26,33 +25,15 @@
       "ENG-0025",
       "ENG-0026",
       "ENG-0027",
-      "ENG-0028",
-      "ENG-0029",
-      "ENG-0030",
-      "ENG-0031",
-      "ENG-0032",
-      "ENG-0033",
-      "ENG-0034",
-      "ENG-0035",
-      "ENG-0036",
-      "ENG-0037",
-      "ENG-0038",
-      "ENG-0039",
-      "ENG-0040"
+      "ENG-0028"
     ],
     "validation": [
-      "ENG-0007",
-      "ENG-0008",
       "ENG-0009",
-      "ENG-0010",
-      "ENG-0041",
-      "ENG-0042",
-      "ENG-0043"
+      "ENG-0010"
     ],
     "test": [
-      "ENG-0044",
-      "ENG-0045",
-      "ENG-0046"
+      "ENG-0007",
+      "ENG-0008"
     ]
   }
 }
