@@ -137,6 +137,8 @@ def train_smoke_adapter(
 ) -> Path:
     """Run a tiny QLoRA SFT smoke training loop and save the adapter."""
 
+    dataset_dir = dataset_dir.resolve()
+    output_dir = output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
     dataset = load_supervised_splits(dataset_dir)
