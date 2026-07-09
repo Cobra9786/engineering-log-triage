@@ -13,7 +13,7 @@ The goal is to separate source code, dataset artifacts, model artifacts, and dem
 Proposed repo:
 
 ```text
-Cobra9786/engineering-log-triage-dataset
+cobra9786/engineering-log-triage-dataset
 ```
 
 Repository type:
@@ -60,7 +60,7 @@ The dataset card should describe:
 Proposed repo:
 
 ```text
-Cobra9786/engineering-log-triage-qwen-lora
+cobra9786/engineering-log-triage-qwen-lora
 ```
 
 Repository type:
@@ -120,7 +120,7 @@ Adapter weights should remain out of the GitHub source repo and be published onl
 Proposed repo:
 
 ```text
-Cobra9786/engineering-log-triage-api
+cobra9786/engineering-log-triage-api
 ```
 
 Repository type:
@@ -157,7 +157,7 @@ LOG_TRIAGE_ADAPTER_DIR=/app/adapter
 Future Space behavior:
 
 ```text
-LOG_TRIAGE_ADAPTER_REPO_ID=Cobra9786/engineering-log-triage-qwen-lora
+LOG_TRIAGE_ADAPTER_REPO_ID=cobra9786/engineering-log-triage-qwen-lora
 ```
 
 The Space should eventually download the adapter from the model repo at startup rather than relying on a local bind mount.
@@ -204,11 +204,11 @@ After Hugging Face login is configured:
 ```bash
 hf auth login
 
-hf repo create Cobra9786/engineering-log-triage-dataset \
+hf repo create cobra9786/engineering-log-triage-dataset \
   --type dataset \
   --public
 
-hf upload Cobra9786/engineering-log-triage-dataset \
+hf upload cobra9786/engineering-log-triage-dataset \
   data/processed/lora_v1 \
   . \
   --repo-type dataset
@@ -219,11 +219,11 @@ hf upload Cobra9786/engineering-log-triage-dataset \
 After the selected adapter directory is confirmed locally:
 
 ```bash
-hf repo create Cobra9786/engineering-log-triage-qwen-lora \
+hf repo create cobra9786/engineering-log-triage-qwen-lora \
   --type model \
   --public
 
-hf upload Cobra9786/engineering-log-triage-qwen-lora \
+hf upload cobra9786/engineering-log-triage-qwen-lora \
   artifacts/training/qwen_lora_r8_train48_steps72_v1/adapter \
   . \
   --repo-type model
@@ -234,7 +234,7 @@ hf upload Cobra9786/engineering-log-triage-qwen-lora \
 Create a Hugging Face Space repo:
 
 ```bash
-hf repo create Cobra9786/engineering-log-triage-api \
+hf repo create cobra9786/engineering-log-triage-api \
   --type space \
   --space_sdk docker \
   --public
