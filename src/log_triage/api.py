@@ -69,19 +69,25 @@ class QwenLoRATriageRuntime:
 
     def __init__(
         self,
-        adapter_dir: Path,
+        adapter_source: str | Path,
         max_new_tokens: int = 256,
     ) -> None:
-        self.adapter_dir = adapter_dir.resolve()
+        self.adapter_source = resolve_adapter_source_value(adapter_source)
         self.max_new_tokens = max_new_tokens
 
-        if not self.adapter_dir.is_dir():
-            raise FileNotFoundError(f"Adapter directory does not exist: {self.adapter_dir}")
+        adapter_path = Path(self.adapter_source).expanduser()
+        if adapter_path.is_absolute() or self.adapter_source.startswith((".", "~")):
+            resolved_adapter_path = adapter_path.resolve()
+            if not resolved_adapter_path.is_dir():
+                raise FileNotFoundError(
+                    f"Adapter directory does not exist: {resolved_adapter_path}",
+                )
+            self.adapter_source = str(resolved_adapter_path)
 
         self.loaded = load_qwen_for_inference()
         self.loaded.model = PeftModel.from_pretrained(
             self.loaded.model,
-            self.adapter_dir,
+            self.adapter_source,
         )
         self.loaded.model.eval()
 
@@ -150,19 +156,32 @@ class QwenLoRATriageRuntime:
             markdown_fence_recovery_used=recovered_from_markdown,
             latency_seconds=round(latency_seconds, 4),
             model_id=self.model_id,
-            adapter_dir=str(self.adapter_dir),
+            adapter_dir=self.adapter_source,
         )
 
 
-def resolve_adapter_dir() -> Path:
-    """Resolve the adapter directory from environment or default local artifact path."""
+def resolve_adapter_source_value(adapter_source: str | Path) -> str:
+    """Normalize an adapter source to a string accepted by PEFT."""
 
-    configured_path = os.environ.get("LOG_TRIAGE_ADAPTER_DIR")
+    if isinstance(adapter_source, Path):
+        return str(adapter_source.expanduser().resolve())
+
+    return adapter_source.strip()
+
+
+def resolve_adapter_source() -> str:
+    """Resolve the adapter source from environment or default local artifact path."""
+
+    configured_path = os.environ.get("LOG_TRIAGE_ADAPTER_DIR", "").strip()
+    configured_repo_id = os.environ.get("LOG_TRIAGE_ADAPTER_REPO_ID", "").strip()
 
     if configured_path:
-        return Path(configured_path).expanduser().resolve()
+        return str(Path(configured_path).expanduser().resolve())
 
-    return DEFAULT_ADAPTER_DIR.resolve()
+    if configured_repo_id:
+        return configured_repo_id.strip()
+
+    return str(DEFAULT_ADAPTER_DIR.resolve())
 
 
 def get_runtime(request: Request) -> TriageRuntime:
@@ -189,7 +208,7 @@ def create_app(load_runtime: bool = True) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> Iterator[None]:
         if load_runtime:
-            app.state.runtime = QwenLoRATriageRuntime(resolve_adapter_dir())
+            app.state.runtime = QwenLoRATriageRuntime(resolve_adapter_source())
 
         yield
 
@@ -210,7 +229,7 @@ def create_app(load_runtime: bool = True) -> FastAPI:
             "status": "ok",
             "model_loaded": runtime is not None,
             "base_model": BASE_MODEL_ID,
-            "adapter_dir": str(resolve_adapter_dir()),
+            "adapter_dir": resolve_adapter_source(),
         }
 
     @app.post("/triage", response_model=TriageApiResponse)
