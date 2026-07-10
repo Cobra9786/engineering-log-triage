@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from log_triage.api import TriageApiResponse, create_app
+from log_triage.api import TriageApiResponse, create_app, resolve_adapter_source
 from log_triage.schema import TriageResult
 
 
@@ -44,6 +44,28 @@ def test_health_reports_runtime_not_loaded_when_disabled() -> None:
 
     assert payload["status"] == "ok"
     assert payload["model_loaded"] is False
+
+
+def test_adapter_repo_id_is_used_when_configured(monkeypatch) -> None:
+    monkeypatch.delenv("LOG_TRIAGE_ADAPTER_DIR", raising=False)
+    monkeypatch.setenv(
+        "LOG_TRIAGE_ADAPTER_REPO_ID",
+        "cobra9786/engineering-log-triage-qwen-lora",
+    )
+
+    assert resolve_adapter_source() == "cobra9786/engineering-log-triage-qwen-lora"
+
+
+def test_adapter_dir_takes_precedence_over_repo_id(monkeypatch, tmp_path) -> None:
+    adapter_dir = tmp_path / "adapter"
+    adapter_dir.mkdir()
+    monkeypatch.setenv("LOG_TRIAGE_ADAPTER_DIR", str(adapter_dir))
+    monkeypatch.setenv(
+        "LOG_TRIAGE_ADAPTER_REPO_ID",
+        "cobra9786/engineering-log-triage-qwen-lora",
+    )
+
+    assert resolve_adapter_source() == str(adapter_dir.resolve())
 
 
 def test_triage_returns_valid_response_with_injected_runtime() -> None:

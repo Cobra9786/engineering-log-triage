@@ -189,6 +189,14 @@ LOG_TRIAGE_ADAPTER_DIR=artifacts/training/qwen_lora_r8_train48_steps72_v1/adapte
 uvicorn log_triage.api:app --host 127.0.0.1 --port 8000
 ```
 
+The adapter can also be loaded from Hugging Face Hub when a local adapter
+directory is not configured:
+
+```bash
+LOG_TRIAGE_ADAPTER_REPO_ID=cobra9786/engineering-log-triage-qwen-lora \
+uvicorn log_triage.api:app --host 127.0.0.1 --port 8000
+```
+
 Check health:
 
 ```bash
@@ -246,6 +254,9 @@ docker run --rm --name triage-api --gpus all \
   -v "$PWD/artifacts/training/qwen_lora_r8_train48_steps72_v1/adapter:/app/adapter:ro" \
   engineering-log-triage-api:local
 ```
+
+To load the adapter from Hugging Face Hub instead, set
+`LOG_TRIAGE_ADAPTER_REPO_ID` and omit the local adapter mount.
 
 The container listens on port `7860`, matching the default port used by Hugging Face Docker Spaces.
 
